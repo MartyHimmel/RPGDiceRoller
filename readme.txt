@@ -20,4 +20,4 @@ If using the plugin as a widget, simply add it to your preferred widget location
 
 == Changelog ==
 1.0
-Initial version with the core dice rolling functionality supporting multiple die rolls and all standard dice (4-100 sides). Allows embedding on pages with a shortcode and a widget option. 
+Initial version with the core dice rolling functionality supporting multiple die rolls and all standard dice (4-100 sides). Allows embedding on pages with a shortcode and a widget option.
