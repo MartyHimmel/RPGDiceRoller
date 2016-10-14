@@ -1,27 +1,71 @@
-function mh_rpg_roll_dice() {
-	var number_of_dice = document.getElementById("mh_rpg_number_of_dice").value;
-	var die_type = document.getElementById("mh_rpg_die_type").value;
-	var total = 0;
+(function() {
+	var rollButton = document.getElementById('mh_rpg_roll_button'),
+		widgetRollButton = document.getElementById('mh_rpg_roll_button_widget');
 
-	for (var i = 0; i < number_of_dice; i++) {
-		total += mh_rpg_random_number(1, die_type);
+	if (rollButton !== null)
+		rollButton.addEventListener('click', rollDice);
+	if (widgetRollButton !== null)
+		widgetRollButton.addEventListener('click', widgetRollDice);
+
+	function rollDice() {
+		clearRolls('mh_rpg_dice_roll', 'mh_rpg_all_rolls');
+		var numberOfDice = document.getElementById("mh_rpg_number_of_dice").value;
+		
+		if (numberOfDice < 1)
+			return;
+		
+		var dieType = document.getElementById("mh_rpg_die_type").value,
+			rolls = getRolls(numberOfDice, dieType);
+
+		displayTotal('mh_rpg_dice_roll', rolls.reduce(addValues));
+
+		if (document.getElementById('mh_rpg_display_all_cb').checked)
+			displayAllRolls('mh_rpg_all_rolls', rolls);
 	}
 
-	document.getElementById("mh_rpg_dice_roll").innerHTML = total;
-}
+	function widgetRollDice() {
+		clearRolls('mh_rpg_dice_roll_widget', 'mh_rpg_all_rolls_widget');
+		var numberOfDice = document.getElementById("mh_rpg_number_of_dice_widget").value;
+		
+		if (numberOfDice < 1)
+			return;
+		
+		var dieType = document.getElementById("mh_rpg_die_type_widget").value,
+			rolls = getRolls(numberOfDice, dieType);
 
-function mh_rpg_roll_dice_widget() {
-	var number_of_dice = document.getElementById("mh_rpg_number_of_dice_widget").value;
-	var die_type = document.getElementById("mh_rpg_die_type_widget").value;
-	var total = 0;
 
-	for (var i = 0; i < number_of_dice; i++) {
-		total += mh_rpg_random_number(1, die_type);
+		displayTotal('mh_rpg_dice_roll_widget', rolls.reduce(addValues));
+
+		if (document.getElementById('mh_rpg_display_all_cb_widget').checked)
+			displayAllRolls('mh_rpg_all_rolls_widget', rolls);
 	}
 
-	document.getElementById("mh_rpg_dice_roll_widget").innerHTML = total;
-}
+	function getRolls(numberOfDice, dieType) {
+		var rolls = [];
+		for (var i = 0; i < numberOfDice; i++) {
+			rolls.push(randomNumber(1, dieType));
+		}
+		return rolls;
+	}
 
-function mh_rpg_random_number(min, max) {
-	return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+	function randomNumber(min, max) {
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
+
+	function addValues(a, b) {
+		return a + b;
+	}
+
+	function displayTotal(containerId, value) {
+		document.getElementById(containerId).innerHTML = value;
+	}
+
+	function displayAllRolls(containerId, values) {
+		document.getElementById(containerId).innerHTML = '(' + values.join(', ') + ')';
+	}
+
+	function clearRolls(rollContainerId, allRollsContainerId) {
+		document.getElementById(rollContainerId).innerHTML = '';
+		document.getElementById(allRollsContainerId).innerHTML = '';
+	}
+})();

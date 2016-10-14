@@ -3,7 +3,7 @@
 Plugin Name: RPG Dice Roller
 Plugin URI:  http://www.martyhimmel.me/rpg-dice-roller/
 Description: Dice roller designed for table top RPGs.
-Version:     1.0
+Version:     1.1.0
 Author:      Martin Himmel
 Author URI:  http://www.martyhimmel.me
 Donate link: http://www.martyhimmel.me
@@ -33,7 +33,10 @@ if (!class_exists('MHRPGDiceRoller')) {
 		 */
 		function shortcode($atts, $content = null) {
 			$this->enqueue_js();
+			ob_start();
 			require_once('form/form.html');
+			$html = ob_get_clean();
+			return $html;
 		}
 
 		/**

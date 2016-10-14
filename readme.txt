@@ -1,6 +1,8 @@
 === RPG Dice Roller ===
+Contributors: Threllous
+Donate link: http://www.martyhimmel.me
 Tags: rpg, dice, dungeons, dragons, pathfinder, star wars, table top
-Tested up to: 4.2
+Tested up to: 4.6.1
 License: GPL2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,5 +21,11 @@ If embedding the plugin in a page, use the shortcode [mh_rpg_dice_roller] on you
 If using the plugin as a widget, simply add it to your preferred widget location and it\'s ready to go.
 
 == Changelog ==
+1.1.0
+Added an option to see individual results when rolling multiple dice.
+
+1.0.1
+Fixed a shortcode display bug.
+
 1.0
-Initial version with the core dice rolling functionality supporting multiple die rolls and all standard dice (4-100 sides). Allows embedding on pages with a shortcode and a widget option.
+Initial version with the core dice rolling functionality supporting multiple die rolls and all standard dice (4-100 sides). Allows embedding on pages with a shortcode and a widget option. 
